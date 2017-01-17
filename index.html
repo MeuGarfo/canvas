@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Canvas</title>
+    <style media="screen">
+    #canvas,#color{
+        border:1px solid #eee;
+    }
+    #color{
+        height: 19px;
+        width:300px;
+    }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="300" height="227"></canvas>
+    <br>
+    <div id="color"></div>
+    <br>
+    <button type="button" id="setPixel">setPixel</button>
+    <button type="button" id="getPixel">getPixel</button>
+    <button type="button" id="setImage">setImage</button>
+    <script src="canvas.js"></script>
+    <script src="jquery.js"></script>
+    <script type="text/javascript">
+    function linhaHorizontal(x,y,size,color){
+        var canvasId='canvas';
+        while (x < size) {
+            setPixel(canvasId,x, y,color);
+            x++;
+        }
+    }
+    $(function(){
+        $('#setPixel').click(function(){
+            linhaHorizontal(0,10,150,[255, 0, 0,255]);//vermelha
+            linhaHorizontal(0,20,150,[0, 255, 0,255]);//verde
+            linhaHorizontal(0,30,150,[0, 0, 255,255]);//azul
+        });
+
+        $('#getPixel').click(function(){
+            var canvasId='canvas';
+            var x=0;
+            var y=20;
+            var data = getPixel(canvasId,x,y);
+            var rgba = 'rgba(' + data[0] + ',' + data[1] +
+            ',' + data[2] + ',' + (data[3] / 255) + ')';
+            var color = document.getElementById('color');
+            color.style.background =  rgba;
+            color.textContent = rgba;
+        });
+        $('#setImage').click(function(){
+            var canvasId='canvas';
+            var imageSrc='rhino.png';
+            setImage(canvasId,0,0,imageSrc);
+        });
+    });
+    </script>
+</body>
+</html>
