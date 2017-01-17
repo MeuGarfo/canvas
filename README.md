@@ -1,2 +1,2 @@
 # canvas
-:sparkler: Estudos sobre HTML5 canvas
+:sparkler: Estudos sobre o HTML5 canvas
